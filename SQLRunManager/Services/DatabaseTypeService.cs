@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SQLRunManager.Models;
+﻿using SQLRunManager.Models;
 
 namespace SQLRunManager.Services
 {
-    public class DatabaseTypeService: AbstractDataService<DatabaseType>
+    public class DatabaseTypeService : AbstractDataService<DatabaseType>
     {
     }
 }

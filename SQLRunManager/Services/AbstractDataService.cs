@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Dommel;
 using SQLRunManager.Context;
 using SQLRunManager.Models;
-using Dommel;
 
 namespace SQLRunManager.Services
 {
-    public abstract class AbstractDataService<T> where T: Model
+    public abstract class AbstractDataService<T> where T : Model
     {
         public void Insert(T model)
         {
