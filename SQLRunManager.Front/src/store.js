@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -22,7 +23,7 @@ export default new Vuex.Store({
   },
   getters: {
     databaseType (state) {
-      return state.databaseType
+      return _.clone(state.databaseType)
     },
     databaseTypes (state) {
       return state.databaseTypes
