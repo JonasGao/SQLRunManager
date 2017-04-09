@@ -13,8 +13,15 @@ function jsonBody (option) {
   return option
 }
 
+function isEmpty (response) {
+  return response.headers.has('content-length') && response.headers.get('content-length') <= 0
+}
+
 async function thenJson (url, option) {
   const response = await fetch(apiUrl(url), jsonBody(option))
+  if (isEmpty(response)) {
+    return []
+  }
   const jsonData = await response.json()
   if (!response.ok) {
     throw new RestApiFailError(jsonData.message || '出现了未知的服务端错误', response.status)
