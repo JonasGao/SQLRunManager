@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using SQLRunManager.Beans;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
 
 namespace SQLRunManager.Controllers
 {
     [Route("/api/[controller]")]
-    public class DatabaseTypeController : Controller
+    public class DatabaseTypeController : MyBaseController
     {
         public DatabaseTypeController(DatabaseTypeService databaseTypeService)
         {
@@ -27,14 +22,18 @@ namespace SQLRunManager.Controllers
         }
 
         [HttpPost]
-        public object Post([FromBody]DatabaseType databaseType)
+        public DatabaseType Post([FromBody] DatabaseType databaseType)
         {
-            if (databaseType == null)
-            {
-                return BadRequest(new InvalidJsonType());
-            }
+            RequireNonNull(databaseType);
             DatabaseTypeService.Insert(databaseType);
             return databaseType;
+        }
+
+        [HttpPut]
+        public void Put([FromBody] DatabaseType databaseType)
+        {
+            RequireNonNull(databaseType);
+            DatabaseTypeService.Update(databaseType);
         }
     }
 }
