@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
@@ -9,14 +6,14 @@ using SQLRunManager.Services;
 namespace SQLRunManager.Controllers
 {
     [Route("api/[controller]")]
-    public class DatabaseItemController : Controller
+    public class DatabaseItemController : MyBaseController
     {
-        private DatabaseItemService DatabaseItemService { get; }
-
         public DatabaseItemController(DatabaseItemService databaseItemService)
         {
             DatabaseItemService = databaseItemService;
         }
+
+        private DatabaseItemService DatabaseItemService { get; }
 
         [HttpGet]
         public IEnumerable<DatabaseItem> Get()
@@ -33,13 +30,13 @@ namespace SQLRunManager.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
@@ -47,7 +44,7 @@ namespace SQLRunManager.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            DatabaseItemService.Delete(new DatabaseItem{Id = id});
+            DatabaseItemService.Delete(new DatabaseItem {Id = id});
         }
     }
 }
