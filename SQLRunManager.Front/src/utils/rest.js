@@ -35,7 +35,7 @@ export async function put (url, body) {
 }
 
 export function defaultCatch (error) {
-  console.debug('错误的响应内容', error.response)
+  console.debug(error.name, error.response)
   alert('提交出现了错误：' + error.message)
 }
 
