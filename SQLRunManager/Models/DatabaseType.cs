@@ -12,7 +12,7 @@ namespace SQLRunManager.Models
     {
         public string Title { get; set; }
         public string Server { get; set; }
-        public string Port { get; set; }
+        public int Port { get; set; }
         public string Uid { get; set; }
         public string Pwd { get; set; }
     }

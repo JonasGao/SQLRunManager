@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using SQLRunManager.Beans;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
 
@@ -25,9 +27,14 @@ namespace SQLRunManager.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]DatabaseType databaseType)
+        public object Post([FromBody]DatabaseType databaseType)
         {
+            if (databaseType == null)
+            {
+                return BadRequest(new InvalidJsonType());
+            }
             DatabaseTypeService.Insert(databaseType);
+            return databaseType;
         }
     }
 }
