@@ -15,7 +15,7 @@
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
-  import {post} from '@/utils/rest'
+  import { post, defaultCatch } from '@/utils/rest'
   import router from '@/router'
 
   export default {
@@ -30,9 +30,13 @@
         'pushDatabaseType'
       ]),
       async save () {
-        await post('databaseType', this.databaseType)
-        this.pushDatabaseType(this.databaseType)
-        router.push('/database/type')
+        try {
+          await post('databaseType', this.databaseType)
+          this.pushDatabaseType(this.databaseType)
+          router.push('/database/type')
+        } catch (e) {
+          defaultCatch(e)
+        }
       }
     }
   }
