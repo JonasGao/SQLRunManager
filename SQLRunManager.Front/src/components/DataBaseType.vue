@@ -18,13 +18,13 @@
       </thead>
       <tbody>
       <tr v-for="databaseType in databaseTypes">
-        <td>{{ databaseType.Title }}</td>
-        <td>{{ databaseType.Server }}</td>
-        <td>{{ databaseType.Port }}</td>
-        <td>{{ databaseType.Uid }}</td>
-        <td>{{ databaseType.Pwd }}</td>
-        <td>{{ databaseType.Created }}</td>
-        <td>{{ databaseType.Creater }}</td>
+        <td>{{ databaseType.title }}</td>
+        <td>{{ databaseType.server }}</td>
+        <td>{{ databaseType.port }}</td>
+        <td>{{ databaseType.uid }}</td>
+        <td>{{ databaseType.pwd }}</td>
+        <td>{{ databaseType.created }}</td>
+        <td>{{ databaseType.creater }}</td>
         <td>
           <button type="button" @click="editDatabaseType(databaseType)">编辑</button>
         </td>
