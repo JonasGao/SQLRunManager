@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SQLRunManager.Context;
+using SQLRunManager.Exceptions;
 
 namespace SQLRunManager
 {
@@ -30,7 +31,7 @@ namespace SQLRunManager
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc()
+            services.AddMvc(option => option.Filters.Add(typeof(InvalidJsonTypeExceptionHandler)))
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             // 扫描并注册 Service
@@ -51,10 +52,8 @@ namespace SQLRunManager
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
-
             app.UseMvc();
+
 
             DataBase.Configure();
         }
