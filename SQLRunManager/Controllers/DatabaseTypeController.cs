@@ -35,5 +35,12 @@ namespace SQLRunManager.Controllers
             RequireNonNull(databaseType);
             DatabaseTypeService.Update(databaseType);
         }
+
+        [HttpDelete]
+        public void Delete([FromBody] DatabaseType databaseType)
+        {
+            RequireNonNull(databaseType);
+            DatabaseTypeService.Delete(databaseType);
+        }
     }
 }
