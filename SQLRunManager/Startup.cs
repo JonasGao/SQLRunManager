@@ -31,7 +31,7 @@ namespace SQLRunManager
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc(option => option.Filters.Add(typeof(InvalidJsonTypeExceptionHandler)))
+            services.AddMvc(option => option.Filters.Add(typeof(BadRequestExceptionHandler)))
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             // 扫描并注册 Service
@@ -53,7 +53,6 @@ namespace SQLRunManager
             loggerFactory.AddDebug();
 
             app.UseMvc();
-
 
             DataBase.Configure();
         }
