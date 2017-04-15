@@ -18,7 +18,8 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import rest from '../services/rest'
+  import { rest } from '../services/rest'
+  import { defaultCatch } from '../services/http'
   import router from '../router'
 
   export default {
@@ -44,14 +45,18 @@
         'pushDatabaseType'
       ]),
       async save () {
-        let databaseType = this.databaseType
-        if (this.isCreate) {
-          databaseType = await rest('databaseType').push(databaseType)
-        } else {
-          await rest('databaseType').put(databaseType)
+        try {
+          let databaseType = this.databaseType
+          if (this.isCreate) {
+            databaseType = await rest('databaseType').push(databaseType)
+          } else {
+            await rest('databaseType').put(databaseType)
+          }
+          this.pushDatabaseType(databaseType)
+          router.push('/database/type')
+        } catch (e) {
+          defaultCatch(e)
         }
-        this.pushDatabaseType(databaseType)
-        router.push('/database/type')
       },
       cancel () {
         router.go(-1)
