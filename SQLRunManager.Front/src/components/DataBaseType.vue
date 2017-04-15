@@ -27,7 +27,7 @@
         <td>{{ databaseType.creater }}</td>
         <td>
           <button type="button" @click="editDatabaseType(databaseType)">编辑</button>
-          <button type="button" @click="deleteDatabaseType(databaseType)">删除</button>
+          <button type="button" @click="del(databaseType)">删除</button>
         </td>
       </tr>
       </tbody>
@@ -37,7 +37,7 @@
 
 <script>
   import router from '@/router'
-  import {get} from '@/utils/rest'
+  import { get, del } from '@/utils/rest'
   import {mapMutations, mapGetters} from 'vuex'
 
   export default {
@@ -72,6 +72,10 @@
       editDatabaseType (databaseType) {
         this.setCurrentDatabaseType(databaseType)
         router.push('/database/type/edit')
+      },
+      async del (databaseType) {
+        await del('/databaseType', databaseType)
+        this.deleteDatabaseType(databaseType)
       }
     }
   }
