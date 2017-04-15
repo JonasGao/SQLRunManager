@@ -13,6 +13,13 @@ namespace SQLRunManager.Services
             base.Insert(model);
         }
 
+        public new void Update(DatabaseType model)
+        {
+            if (Select(it => it.Title == model.Title && it.Id != model.Id).Any())
+                throw new DuplicatedTitleException();
+            base.Update(model);
+        }
+
         public class DuplicatedTitleException : BadRequestException
         {
             internal DuplicatedTitleException() : base("标题已存在")
