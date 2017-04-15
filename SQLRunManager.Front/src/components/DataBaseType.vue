@@ -27,6 +27,7 @@
         <td>{{ databaseType.creater }}</td>
         <td>
           <button type="button" @click="editDatabaseType(databaseType)">编辑</button>
+          <button type="button" @click="deleteDatabaseType(databaseType)">删除</button>
         </td>
       </tr>
       </tbody>
@@ -52,7 +53,8 @@
     methods: {
       ...mapMutations([
         'setCurrentDatabaseType',
-        'setDatabaseTypes'
+        'setDatabaseTypes',
+        'deleteDatabaseType'
       ]),
       async getDatabaseTypes () {
         const [data] = await get('databaseType')

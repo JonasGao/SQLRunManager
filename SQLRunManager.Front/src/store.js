@@ -4,26 +4,10 @@ import _ from 'lodash'
 
 Vue.use(Vuex)
 
-const session = {
-  get databaseTypes () {
-    let databaseTypes = sessionStorage.getItem('databaseTypes')
-    if (databaseTypes) {
-      databaseTypes = JSON.parse(databaseTypes)
-    }
-    if (!databaseTypes || !(databaseTypes instanceof Array)) {
-      databaseTypes = []
-    }
-    return databaseTypes
-  },
-  set databaseTypes (data) {
-    sessionStorage.setItem('databaseTypes', JSON.stringify(data))
-  }
-}
-
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
-    databaseTypes: session.databaseTypes,
+    databaseTypes: [],
     databaseType: {}
   },
   getters: {
@@ -36,7 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setDatabaseTypes (state, databaseTypes) {
-      session.databaseTypes = state.databaseTypes = databaseTypes
+      state.databaseTypes = databaseTypes
     },
     setCurrentDatabaseType (state, databaseType) {
       state.databaseType = databaseType
@@ -47,6 +31,9 @@ export default new Vuex.Store({
         return
       }
       _.assign(state.databaseType, databaseType)
+    },
+    deleteDatabaseType (state, databaseType) {
+      state.databaseTypes.splice(state.databaseTypes.indexOf(databaseType), 1)
     }
   }
 })
