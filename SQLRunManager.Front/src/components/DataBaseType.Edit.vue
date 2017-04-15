@@ -10,6 +10,7 @@
       <p><label for="pwd">密码</label><input id="Pwd" type="text" v-model="model.pwd"></p>
       <p>
         <button type="button" @click="save()">提交</button>
+        <button type="button" @click="cancel()">取消</button>
       </p>
     </form>
   </div>
@@ -55,6 +56,9 @@
         } catch (e) {
           defaultCatch(e)
         }
+      },
+      cancel () {
+        router.go(-1)
       }
     }
   }
