@@ -41,6 +41,10 @@ export async function put (url, body) {
   return thenJson(url, {method: 'PUT', body})
 }
 
+export async function del (url, body) {
+  return thenJson(url, {method: 'DELETE', body})
+}
+
 export function defaultCatch (error) {
   console.debug(error.name, error.response)
   alert('提交出现了错误：' + error.message)
