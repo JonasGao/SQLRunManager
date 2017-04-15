@@ -42,7 +42,11 @@ export default new Vuex.Store({
       state.databaseType = databaseType
     },
     pushDatabaseType (state, databaseType) {
-      state.databaseTypes.push(databaseType)
+      if (state.databaseTypes.indexOf(state.databaseType) < 0) {
+        state.databaseTypes.push(databaseType)
+        return
+      }
+      _.assign(state.databaseType, databaseType)
     }
   }
 })

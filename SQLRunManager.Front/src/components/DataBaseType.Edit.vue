@@ -47,10 +47,10 @@
           let databaseType = this.databaseType
           if (this.isCreate) {
             databaseType = await post('databaseType', databaseType)
-            this.pushDatabaseType(databaseType)
           } else {
             await put('databaseType', databaseType)
           }
+          this.pushDatabaseType(databaseType)
           router.push('/database/type')
         } catch (e) {
           defaultCatch(e)
