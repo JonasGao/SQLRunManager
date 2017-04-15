@@ -59,7 +59,9 @@
         return data
       },
       async loadDatabaseTypes () {
-        this.setDatabaseTypes(await this.getDatabaseTypes())
+        if (!this.databaseTypes || !this.databaseTypes.length) {
+          this.setDatabaseTypes(await this.getDatabaseTypes())
+        }
       },
       createDatabaseType () {
         this.setCurrentDatabaseType({})
