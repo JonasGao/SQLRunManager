@@ -11,7 +11,7 @@ namespace SQLRunManager.Services
     {
         public void Insert(T model)
         {
-            DataBase.Run(db => db.Insert(model));
+            DataBase.Run(db => model.Id = db.Insert(model) as int? ?? 0);
         }
 
         public void Delete(T model)
