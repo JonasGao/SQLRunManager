@@ -18,8 +18,8 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import { post, put, defaultCatch } from '@/utils/rest'
-  import router from '@/router'
+  import rest from '../services/rest'
+  import router from '../router'
 
   export default {
     name: 'editDatabaseType',
@@ -44,18 +44,14 @@
         'pushDatabaseType'
       ]),
       async save () {
-        try {
-          let databaseType = this.databaseType
-          if (this.isCreate) {
-            databaseType = await post('databaseType', databaseType)
-          } else {
-            await put('databaseType', databaseType)
-          }
-          this.pushDatabaseType(databaseType)
-          router.push('/database/type')
-        } catch (e) {
-          defaultCatch(e)
+        let databaseType = this.databaseType
+        if (this.isCreate) {
+          databaseType = await rest('databaseType').push(databaseType)
+        } else {
+          await rest('databaseType').put(databaseType)
         }
+        this.pushDatabaseType(databaseType)
+        router.push('/database/type')
       },
       cancel () {
         router.go(-1)

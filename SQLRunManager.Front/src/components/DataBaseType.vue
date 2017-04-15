@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import router from '@/router'
-  import { get, del } from '@/utils/rest'
+  import router from '../router'
+  import rest from '../services/rest'
   import {mapMutations, mapGetters} from 'vuex'
 
   export default {
@@ -57,7 +57,7 @@
         'deleteDatabaseType'
       ]),
       async getDatabaseTypes () {
-        const [data] = await get('databaseType')
+        const [data] = await rest('databaseType').get()
         return data
       },
       async loadDatabaseTypes () {
@@ -74,7 +74,7 @@
         router.push('/database/type/edit')
       },
       async del (databaseType) {
-        await del('/databaseType', databaseType)
+        await rest('databaseType').del(databaseType)
         this.deleteDatabaseType(databaseType)
       }
     }

@@ -1,6 +1,6 @@
 import { defaultCatch, del, get, post, put } from 'http'
 
-export function resources (url) {
+export default function (url) {
   return new MySimpleResources(url)
 }
 
