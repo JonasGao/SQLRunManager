@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
@@ -16,9 +17,10 @@ namespace SQLRunManager.Controllers
         private DatabaseItemService DatabaseItemService { get; }
 
         [HttpGet]
-        public IEnumerable<DatabaseItem> Get()
+        public IEnumerable<object> Get()
         {
-            return DatabaseItemService.Select();
+            // 不能暴露密码
+            return DatabaseItemService.Select().Select(i => new {i.Id, i.Title, i.Server, i.Port, i.Uid});
         }
 
         [HttpPost]

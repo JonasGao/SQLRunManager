@@ -28,12 +28,5 @@ namespace SQLRunManager.Services
             databaseItem.Removed = true;
             Update(databaseItem);
         }
-
-        public class DuplicatedTitleException : BadRequestException
-        {
-            internal DuplicatedTitleException() : base("标题已存在")
-            {
-            }
-        }
     }
 }

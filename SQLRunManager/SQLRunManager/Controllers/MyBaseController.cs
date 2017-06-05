@@ -9,14 +9,13 @@ namespace SQLRunManager.Controllers
         public void RequireNonNull(object formBody)
         {
             if (formBody == null)
-                throw new InvalidJsonTypeException();
+                throw new InvalidRequestBodyException();
         }
 
-        public class InvalidJsonTypeException : BadRequestException
+        public void RequireFieldNonBlank(string content, string fieldName)
         {
-            public InvalidJsonTypeException() : base("参数（或其属性）类型错误")
-            {
-            }
+            if (string.IsNullOrWhiteSpace(content))
+                throw new InvalidJsonException($"参数字段 {fieldName} 不能为空");
         }
     }
 }
