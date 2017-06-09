@@ -12,6 +12,8 @@ namespace SQLRunManager.Models
         /// </summary>
         public bool Removed { get; set; } = false;
 
+        public int DatabaseTypeId { get; set; }
+
         /// <summary>
         ///     获取当前配置的连接字符串
         /// </summary>

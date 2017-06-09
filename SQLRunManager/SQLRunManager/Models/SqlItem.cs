@@ -7,10 +7,17 @@ namespace SQLRunManager.Models
     /// </summary>
     public class SqlItem : Model
     {
+        public int DatabaseId { get; set; }
+
         /// <summary>
         /// 运行内容（SQL语句）
         /// </summary>
         public string Content { get; set; }
+
+        /// <summary>
+        /// 受影响的行数
+        /// </summary>
+        public int RecordsAffected { get; set; }
 
         /// <summary>
         /// 运行时间
