@@ -58,6 +58,9 @@ namespace SQLRunManager.Context
             DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
+        /// <summary>
+        /// 数据库字段的驼峰写法转下划线写法
+        /// </summary>
         public class UnderscoreTableNameResolver : DommelMapper.ITableNameResolver
         {
             public string ResolveTableName(Type type)

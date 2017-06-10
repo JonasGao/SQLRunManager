@@ -8,6 +8,7 @@
 	uid varchar(100) null,
 	pwd varchar(100) null,
 	removed bool not null default false,
+	type varchar(100) not null,
 	created datetime null,
 	creater_id int null
 );

@@ -17,9 +17,7 @@ namespace SQLRunManager.Models
         ///     逻辑删除标志位
         /// </summary>
         public bool Removed { get; set; } = false;
-
-        public int DatabaseTypeId { get; set; }
-
+        
         public string Type { get; set; }
 
         /// <summary>
