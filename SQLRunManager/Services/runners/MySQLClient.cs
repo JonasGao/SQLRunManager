@@ -5,6 +5,8 @@ namespace SQLRunManager.Services.runners
 {
     public class MySqlClient: IClient
     {
+        public string Name => "MySQL";
+
         public DatabaseItem DatabaseItem { get; set; }
 
         public int ExecuteNonQuery(SqlItem sqlItem)

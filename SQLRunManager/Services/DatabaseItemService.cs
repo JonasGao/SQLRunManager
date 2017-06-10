@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SQLRunManager.Exceptions;
 using SQLRunManager.Models;
+using SQLRunManager.Services.runners;
 
 namespace SQLRunManager.Services
 {
@@ -8,15 +9,15 @@ namespace SQLRunManager.Services
     {
         public new void Insert(DatabaseItem model)
         {
-            if (Select(it => it.Title == model.Title).Any())
-                throw new DuplicatedTitleException();
+            RequireUniqueTitle(model);
+            RegistedDatabaseType(model);
             base.Insert(model);
         }
 
         public new void Update(DatabaseItem model)
         {
-            if (Select(it => it.Title == model.Title && it.Id != model.Id).Any())
-                throw new DuplicatedTitleException();
+            RequireUniqueTitle(model);
+            RegistedDatabaseType(model);
             base.Update(model);
         }
 
@@ -27,6 +28,18 @@ namespace SQLRunManager.Services
         {
             databaseItem.Removed = true;
             Update(databaseItem);
+        }
+
+        public void RequireUniqueTitle(DatabaseItem databaseItem)
+        {
+            if (Select(it => it.Title == databaseItem.Title && it.Id != databaseItem.Id).Any())
+                throw new DuplicatedTitleException();
+        }
+
+        public void RegistedDatabaseType(DatabaseItem databaseItem)
+        {
+            if (!ClientFactory.HasClient(databaseItem))
+                throw new CantFindDatabaseTypeException();
         }
     }
 }

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SQLRunManager.Context;
 using SQLRunManager.Exceptions;
@@ -36,7 +35,7 @@ namespace SQLRunManager
 
             // 扫描并注册 Service
             foreach (var serviceType in GetPublicDataServices())
-                services.AddTransient(serviceType.AsType());
+                services.AddSingleton(serviceType.AsType());
         }
 
         private static IEnumerable<TypeInfo> GetPublicDataServices()
