@@ -11,29 +11,18 @@ namespace SQLRunManager.Context
 {
     public class DataBase
     {
-        private static string _connectionString;
-
-        private static string ConnectionString
-        {
-            get
+        private static readonly Lazy<string> ConnectionString = new Lazy<string>(() => new MySqlConnectionStringBuilder
             {
-                if (IsNullOrWhiteSpace(_connectionString))
-                    _connectionString = new MySqlConnectionStringBuilder
-                        {
-                            Database = "sql_manager",
-                            Server = "localhost",
-                            UserID = "root",
-                            Password = "1234"
-                        }
-                        .GetConnectionString(true);
-
-                return _connectionString;
+                Database = "sql_manager",
+                Server = "localhost",
+                UserID = "root",
+                Password = ""
             }
-        }
+            .GetConnectionString(true));
 
-        internal static MySqlConnection GetConnection()
+        private static MySqlConnection GetConnection()
         {
-            return new MySqlConnection(ConnectionString);
+            return new MySqlConnection(ConnectionString.Value);
         }
 
         internal static void Run(Action<IDbConnection> action)

@@ -7,6 +7,11 @@ namespace SQLRunManager.Services.runners
     {
         private static readonly Dictionary<string, IClient> Clients = new Dictionary<string, IClient>();
 
+        static ClientFactory()
+        {
+            Registe(new MySqlClient());
+        }
+
         public static void Registe(IClient client)
         {
             Clients.Add(client.Name, client);

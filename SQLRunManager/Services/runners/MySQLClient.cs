@@ -16,7 +16,7 @@ namespace SQLRunManager.Services.runners
                 connection.Open();
                 using (var command = new MySqlCommand(sqlItem.Content))
                 {
-                    return sqlItem.RecordsAffected = command.ExecuteNonQuery();
+                    return (sqlItem.RecordsAffected = command.ExecuteNonQuery()).Value;
                 }
             }
         }

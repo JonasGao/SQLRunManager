@@ -17,7 +17,7 @@ namespace SQLRunManager.Models
         /// <summary>
         /// 受影响的行数
         /// </summary>
-        public int RecordsAffected { get; set; }
+        public int? RecordsAffected { get; set; }
 
         /// <summary>
         /// 运行时间
