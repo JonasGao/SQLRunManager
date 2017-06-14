@@ -44,11 +44,12 @@ namespace SQLRunManager.Context
         public static void Configure()
         {
             DommelMapper.SetTableNameResolver(new UnderscoreTableNameResolver());
+            DommelMapper.SetColumnNameResolver(new UnderscoreColumnNameResolver());
             DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
         /// <summary>
-        /// 数据库字段的驼峰写法转下划线写法
+        /// 数据库表名的驼峰写法转下划线写法
         /// </summary>
         public class UnderscoreTableNameResolver : DommelMapper.ITableNameResolver
         {
@@ -60,12 +61,20 @@ namespace SQLRunManager.Context
 
                 return ConvertCamelcaseToUnderscore(name);
             }
+        }
 
-            private static string ConvertCamelcaseToUnderscore(string inputString)
+        public class UnderscoreColumnNameResolver : DommelMapper.IColumnNameResolver
+        {
+            public string ResolveColumnName(PropertyInfo propertyInfo)
             {
-                return Concat(inputString.Select(
-                    (x, j) => j > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString()));
+                return ConvertCamelcaseToUnderscore(propertyInfo.Name);
             }
+        }
+
+        private static string ConvertCamelcaseToUnderscore(string inputString)
+        {
+            return Concat(inputString.Select(
+                (x, j) => j > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString()));
         }
     }
 }

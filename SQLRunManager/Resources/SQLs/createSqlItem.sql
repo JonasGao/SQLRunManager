@@ -2,11 +2,11 @@
 (
 	id INT NOT NULL AUTO_INCREMENT
 		PRIMARY KEY,
-	DatabaseId INT NOT NULL ,
-	Content VARCHAR(1000) NOT NULL ,
-	RecordsAffected INT NULL ,
-	Ran DATETIME NULL ,
-	Runner INT NULL,
+	database_id INT NOT NULL ,
+	content VARCHAR(1000) NOT NULL ,
+	records_affected INT NULL ,
+	ran DATETIME NULL ,
+	runner INT NULL,
 	created DATETIME NULL,
 	creater_id INT NULL
 ) CHARSET 'utf8';
