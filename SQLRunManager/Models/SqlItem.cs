@@ -27,6 +27,10 @@ namespace SQLRunManager.Models
         /// <summary>
         /// 运行人
         /// </summary>
-        public string Runner { get; set; }
+        public int? Runner { get; set; }
+
+        public string Exception { get; set; }
+        public string Message { get; set; }
+        public string StackTrace { get; set; }
     }
 }

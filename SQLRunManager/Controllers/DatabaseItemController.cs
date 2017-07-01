@@ -17,10 +17,10 @@ namespace SQLRunManager.Controllers
         private DatabaseItemService DatabaseItemService { get; }
 
         [HttpGet]
-        public IEnumerable<object> Get()
+        public IEnumerable<SafeDatabaseItem> Get()
         {
             // 不能暴露密码
-            return DatabaseItemService.Select().Select(i => new {i.Id, i.Title, i.Server, i.Port, i.Uid});
+            return DatabaseItemService.Select().Select(i => new SafeDatabaseItem(i));
         }
 
         [HttpPost]

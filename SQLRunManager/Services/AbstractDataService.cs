@@ -12,7 +12,7 @@ namespace SQLRunManager.Services
         public void Insert(T model)
         {
             model.Created = DateTime.Now;
-            DataBase.Run(db => model.Id = db.Insert(model) as int? ?? 0);
+            DataBase.Run(db => model.Id = Convert.ToInt32(db.Insert(model)));
         }
 
         public void Delete(T model)

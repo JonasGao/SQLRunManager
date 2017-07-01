@@ -5,26 +5,26 @@ namespace SQLRunManager.Services.runners
 {
     public class ClientFactory
     {
-        private static readonly Dictionary<string, IClient> Clients = new Dictionary<string, IClient>();
+        private static readonly Dictionary<string, IClientBuilder<IClient>> ClientBuilders = new Dictionary<string, IClientBuilder<IClient>>();
 
         static ClientFactory()
         {
-            Registe(new MySqlClient());
+            Registe(new MySqlClientBuilder());
         }
 
-        public static void Registe(IClient client)
+        public static void Registe(IClientBuilder<IClient> client)
         {
-            Clients.Add(client.Name, client);
+            ClientBuilders.Add(client.Type, client);
         }
 
         public static bool HasClient(DatabaseItem databaseItem)
         {
-            return Clients.ContainsKey(databaseItem.Type);
+            return ClientBuilders.ContainsKey(databaseItem.Type);
         }
 
         public static IClient GetClient(DatabaseItem databaseItem)
         {
-            return Clients[databaseItem.Type];
+            return ClientBuilders[databaseItem.Type].Build(databaseItem);
         }
     }
 }

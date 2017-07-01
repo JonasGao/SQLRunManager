@@ -16,13 +16,13 @@ namespace SQLRunManager.Test
         }
 
         [Fact]
-        public void Test1()
+        public void TestGetClientByDatabaseItem()
         {
             Assert.Equal(ClientFactory.GetClient(new DatabaseItem {Type = "MySQL"}).GetType(), typeof(MySqlClient));
         }
-
+        
         [Fact]
-        public void Test2()
+        public void TestColumnResolver()
         {
             var sqlItem = new SqlItem
             {
@@ -32,7 +32,7 @@ namespace SQLRunManager.Test
                 Content = "select 1"
             };
 
-            var sqlService = new SqlService();
+            var sqlService = new SqlService(null);
             
             sqlService.Insert(sqlItem);
         }

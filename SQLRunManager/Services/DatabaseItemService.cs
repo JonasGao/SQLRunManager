@@ -39,7 +39,7 @@ namespace SQLRunManager.Services
         public void RegistedDatabaseType(DatabaseItem databaseItem)
         {
             if (!ClientFactory.HasClient(databaseItem))
-                throw new CantFindDatabaseTypeException();
+                throw new DatabaseTypeNotFoundException();
         }
     }
 }
