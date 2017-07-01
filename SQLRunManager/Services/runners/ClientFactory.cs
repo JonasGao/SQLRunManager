@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using SQLRunManager.Models;
 
-namespace SQLRunManager.Services.runners
+namespace SQLRunManager.Services.Runners
 {
     public class ClientFactory
     {

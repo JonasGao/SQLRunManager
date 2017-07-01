@@ -2,7 +2,7 @@ using System;
 using SQLRunManager.Context;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
-using SQLRunManager.Services.runners;
+using SQLRunManager.Services.Runners;
 using Xunit;
 using Xunit.Sdk;
 

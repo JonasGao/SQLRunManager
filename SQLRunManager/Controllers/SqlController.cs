@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SQLRunManager.Models;
 using SQLRunManager.Services;
-using SQLRunManager.Services.runners;
+using SQLRunManager.Services.Runners;
 
 namespace SQLRunManager.Controllers
 {
