@@ -7,5 +7,7 @@
         public string NickName { get; set; }
 
         public string Password { get; set; }
+
+        public short GroupId { get; set; }
     }
 }
